@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  python:
+    name: Linux app (Python)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: System GTK bindings
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends python3-gi python3-gi-cairo gir1.2-gtk-3.0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m venv --system-site-packages .venv
+          .venv/bin/pip install -q bleak dbus_next cryptography pytest ruff
+      - name: Lint
+        run: .venv/bin/ruff check coolbar tests --select E,F,W --ignore E501
+      - name: Test
+        run: .venv/bin/pytest -q tests
+
+  flutter:
+    name: Android / Windows app (Flutter)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.41.6
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test

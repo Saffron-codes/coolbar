@@ -1,3 +1,4 @@
+# ruff: noqa: F821, F722  - the string annotations are D-Bus type signatures for dbus_next
 """StatusNotifierItem (the freedesktop tray protocol GNOME's AppIndicator extension speaks), via dbus_next.
 
 We deliberately export NO menu (`Menu = /NO_DBUSMENU`, `ItemIsMenu = false`) so a left click

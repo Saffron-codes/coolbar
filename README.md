@@ -82,24 +82,34 @@ Sleep chips / slider with − + / tiles Mode · Fan · 5-in-1 · Timer / Swing �
 For temperature, mode, fan and power it sends the change, waits for the AC's own status push, checks
 the value came back, then restores the original.
 
-## Run
+## Install (Linux, one time)
 
 ```sh
-cd <repo>
+curl -fsSL https://github.com/Saffron-codes/ac_app_bluestar/releases/latest/download/install.sh | bash
+```
+
+That downloads the self-contained bundle to `~/.local/opt/coolbar`, adds CoolBar to your app launcher,
+makes it start at login, and starts it now. No Python or other dependencies are needed. GNOME users
+need the *AppIndicator and KStatusNotifierItem Support* extension for the tray icon. Remove with `install.sh --uninstall`.
+
+Windows: download `CoolBar-<version>-windows-x64.zip` from the latest release, unzip anywhere, run
+`coolbar.exe`. Android: install `CoolBar-<version>.apk` from the same release.
+
+## Run from source
+
+```sh
+python3 -m venv --system-site-packages .venv && .venv/bin/pip install bleak dbus_next cryptography
 .venv/bin/python -m coolbar        # add -v for debug logging
 ```
 
-Requirements already present on this laptop: Fedora 43, GNOME 49 with the *AppIndicator and
-KStatusNotifierItem Support* extension enabled, `python3-gobject` + GTK3, XWayland.
-The venv was created with `--system-site-packages` so it sees the system GTK bindings;
-`bleak` is the only pip dependency.
+Requirements: GNOME/KDE with a StatusNotifier tray, `python3-gobject` + GTK3, BlueZ, XWayland.
 
-To start it at login, drop a `.desktop` file in `~/.config/autostart/` whose `Exec=` is the command above.
+## Releases
 
-## Mobile app
-
-`app/` is the Flutter port (Android + iOS) with the same design and the same verified protocol.
-See `app/README.md`. Release APK: `app/build/app/outputs/flutter-apk/app-release.apk`.
+Push a tag `vX.Y.Z`; the Release workflow builds the Android APK, the Windows zip and the Linux
+tarball + installer and attaches them to a GitHub Release. Android release signing is used when the
+`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS` and `ANDROID_KEY_PASSWORD`
+secrets exist, otherwise the APK is debug-signed.
 
 ## Layout
 
