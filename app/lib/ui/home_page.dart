@@ -14,8 +14,9 @@ const _modeIcon = {
 };
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.conn});
+  const HomePage({super.key, required this.conn, this.onQuit});
   final ACConnection conn;
+  final VoidCallback? onQuit;   // desktop tray mode only
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -176,7 +177,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 16),
             if (!c.paired) _PairCard(conn: c),
             const SizedBox(height: 8),
-            _Footer(conn: c),
+            _Footer(conn: c, onQuit: widget.onQuit),
           ],
         ),
       ),
@@ -187,8 +188,9 @@ class _HomePageState extends State<HomePage> {
 }
 
 class _Footer extends StatelessWidget {
-  const _Footer({required this.conn});
+  const _Footer({required this.conn, this.onQuit});
   final ACConnection conn;
+  final VoidCallback? onQuit;
 
   @override
   Widget build(BuildContext context) {
@@ -236,6 +238,8 @@ class _Footer extends StatelessWidget {
           ),
           child: const Text('Token', style: TextStyle(fontSize: 12, color: C.dim)),
         ),
+      if (onQuit != null)
+        TextButton(onPressed: onQuit, child: const Text('Quit', style: TextStyle(fontSize: 12, color: C.dim))),
     ]);
   }
 }

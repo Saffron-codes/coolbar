@@ -191,7 +191,11 @@ class BluFi {
   Future<void> sendCustom(List<int> payload) => send(pktData, dataCustom, payload);
 
   Future<Frame> _waitFor(bool Function(Frame) pred, Duration timeout) {
-    return frames.firstWhere(pred).timeout(timeout);
+    // `ignore()`: if the write that follows throws, nobody awaits this future; without it the
+    // stream closing later surfaces as an unhandled "No element" error.
+    final f = frames.firstWhere(pred).timeout(timeout);
+    f.ignore();
+    return f;
   }
 
   /// DH key exchange + SET_SEC_MODE, after which data frames are encrypted + checksummed.
