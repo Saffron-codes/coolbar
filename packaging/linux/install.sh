@@ -2,7 +2,7 @@
 # CoolBar installer for Linux (GNOME / KDE / anything with a StatusNotifier tray).
 #
 #   One-liner (latest release):
-#     curl -fsSL https://github.com/Saffron-codes/ac_app_bluestar/releases/latest/download/install.sh | bash
+#     curl -fsSL https://github.com/Saffron-codes/coolbar/releases/latest/download/install.sh | bash
 #   From a downloaded tarball:
 #     ./install.sh coolbar-linux-x64.tar.gz
 #   Remove everything:
@@ -13,7 +13,7 @@
 # the "AppIndicator and KStatusNotifierItem Support" extension so the tray icon is shown.
 set -euo pipefail
 
-REPO="Saffron-codes/ac_app_bluestar"
+REPO="Saffron-codes/coolbar"
 ASSET="coolbar-linux-x64.tar.gz"
 PREFIX="${COOLBAR_PREFIX:-$HOME/.local/opt/coolbar}"
 BIN_DIR="$HOME/.local/bin"

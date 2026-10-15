@@ -85,7 +85,7 @@ the value came back, then restores the original.
 ## Install (Linux, one time)
 
 ```sh
-curl -fsSL https://github.com/Saffron-codes/ac_app_bluestar/releases/latest/download/install.sh | bash
+curl -fsSL https://github.com/Saffron-codes/coolbar/releases/latest/download/install.sh | bash
 ```
 
 That downloads the self-contained bundle to `~/.local/opt/coolbar`, adds CoolBar to your app launcher,
