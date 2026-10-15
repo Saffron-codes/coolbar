@@ -4,7 +4,7 @@ import sys
 
 from bleak import BleakClient, BleakScanner
 
-from bluestar.blufi import (BluFi, CTRL_GET_VERSION, CTRL_GET_WIFI_STATUS, DATA_VERSION,
+from coolbar.blufi import (BluFi, CTRL_GET_VERSION, CTRL_GET_WIFI_STATUS, DATA_VERSION,
                             DATA_WIFI_STATUS, describe_wifi_status)
 
 NAME_PREFIX = "BLUAC_"

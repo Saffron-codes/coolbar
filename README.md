@@ -1,4 +1,4 @@
-# Blue Star AC – menubar-style controller for Linux
+# CoolBar – menubar controller for Blue Star ACs
 
 > **Unofficial.** This is an independent, community project. It is not affiliated with, endorsed by,
 > or supported by Blue Star Limited. "Blue Star" is a trademark of Blue Star Limited and is used here
@@ -19,7 +19,7 @@ There are no normal windows.
 | BluFi transport incl. DH/AES security negotiation | **working** – verified: encrypted replies decode (BluFi v1.2) |
 | Tray icon + drop-down panel | **working** |
 | Blue Star command protocol (JSON over BluFi custom data) | **documented below** (reverse-engineered for interoperability) |
-| Pairing (one-time bind, type 0/6) | **done** on 2026-10-15, token in `~/.config/bluestar-ac/device.json` |
+| Pairing (one-time bind, type 0/6) | **done** on 2026-10-15, token in `~/.config/coolbar/device.json` |
 | Control + read-back confirmation (type 1 → type 5) | **verified on the unit** for every remote function (see table) |
 
 ## Protocol
@@ -72,7 +72,7 @@ Sleep chips / slider with − + / tiles Mode · Fan · 5-in-1 · Timer / Swing �
 2. Press one of the remote's special buttons (heart / bubbles / bulb / "88" display) **5 times within
    7 seconds**. The AC display starts blinking = pairing mode.
 3. Click **Pair with AC** in the panel (or run `.venv/bin/python verify.py --pair` with the app quit).
-   The token is saved to `~/.config/bluestar-ac/device.json`.
+   The token is saved to `~/.config/coolbar/device.json`.
 
 ## Verifying round-trips
 
@@ -85,8 +85,8 @@ the value came back, then restores the original.
 ## Run
 
 ```sh
-cd ~/projects/bluestar-ac
-.venv/bin/python -m bluestar        # add -v for debug logging
+cd <repo>
+.venv/bin/python -m coolbar        # add -v for debug logging
 ```
 
 Requirements already present on this laptop: Fedora 43, GNOME 49 with the *AppIndicator and
@@ -98,19 +98,19 @@ To start it at login, drop a `.desktop` file in `~/.config/autostart/` whose `Ex
 
 ## Mobile app
 
-`mobile/` is the Flutter port (Android + iOS) with the same design and the same verified protocol.
-See `mobile/README.md`. Release APK: `mobile/build/app/outputs/flutter-apk/app-release.apk`.
+`app/` is the Flutter port (Android + iOS) with the same design and the same verified protocol.
+See `app/README.md`. Release APK: `app/build/app/outputs/flutter-apk/app-release.apk`.
 
 ## Layout
 
 ```
-bluestar/
+coolbar/
   blufi.py     Espressif BluFi framing: build/parse frames, CRC16, query helpers
   ble.py       background asyncio worker: scan → connect → BluFi handshake → keep-alive/reconnect
   tray.py      StatusNotifierItem over D-Bus (dbus_next); no menu, so left-click → Activate → panel
   panel.py     GTK3 popup panel, placed under the top bar at the right edge, dark macOS-like styling
   commands.py  ACState model + desired-state encode / status decode
-  config.py    pairing token storage (~/.config/bluestar-ac/device.json)
+  config.py    pairing token storage (~/.config/coolbar/device.json)
   app.py       wires GTK main thread + worker thread
 probe.py       read-only CLI probe (version + Wi-Fi status)
 probe_bind.py  low-level pairing probe

@@ -12,9 +12,9 @@ import sys
 
 from bleak import BleakClient
 
-from bluestar import config
-from bluestar.ble import ACSession, bluez_mtu, find_ac
-from bluestar.commands import FAN_IDS, MODE_IDS
+from coolbar import config
+from coolbar.ble import ACSession, bluez_mtu, find_ac
+from coolbar.commands import FAN_IDS, MODE_IDS
 
 
 async def main(argv: list[str]) -> int:

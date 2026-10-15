@@ -4,7 +4,7 @@ from bleak import BleakClient, BleakScanner
 from dbus_next import BusType
 from dbus_next.aio import MessageBus
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from bluestar.blufi import BluFi, WRITE_UUID
+from coolbar.blufi import BluFi, WRITE_UUID
 
 NAME_PREFIX = "BLUAC_"
 

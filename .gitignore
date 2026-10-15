@@ -7,15 +7,15 @@ build/
 *.spec
 
 # Flutter (mobile app)
-mobile/build/
-mobile/.dart_tool/
-mobile/.flutter-plugins*
-mobile/.packages
-mobile/*.iml
-mobile/android/.gradle/
-mobile/android/local.properties
-mobile/android/key.properties
-mobile/android/app/upload-keystore.jks
+app/build/
+app/.dart_tool/
+app/.flutter-plugins*
+app/.packages
+app/*.iml
+app/android/.gradle/
+app/android/local.properties
+app/android/key.properties
+app/android/app/upload-keystore.jks
 
 # Signing material - never commit
 *.jks
