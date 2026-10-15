@@ -1,0 +1,36 @@
+# Python (desktop app)
+.venv/
+__pycache__/
+*.pyc
+dist/
+build/
+*.spec
+
+# Flutter (mobile app)
+mobile/build/
+mobile/.dart_tool/
+mobile/.flutter-plugins*
+mobile/.packages
+mobile/*.iml
+mobile/android/.gradle/
+mobile/android/local.properties
+mobile/android/key.properties
+mobile/android/app/upload-keystore.jks
+
+# Signing material - never commit
+*.jks
+*.keystore
+*.p12
+*.pem
+key.properties
+
+# Local notes / scans / captures that may contain personal network details
+SCAN-FINDINGS.md
+*.btsnoop
+*.log
+
+# Editors
+.idea/
+.vscode/
+*.swp
+.DS_Store
