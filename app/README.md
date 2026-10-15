@@ -1,6 +1,9 @@
-# CoolBar – Android app (Flutter)
+# CoolBar – Android app and Windows menubar app (Flutter)
 
-Same controller as the desktop menubar app (`../`), same design, on Android and iOS. Talks to the
+Same controller as the Linux menubar app (`../`), same design. Builds the Android app and, with
+`lib/desktop/tray_shell.dart`, the Windows menubar app: a tray icon whose click pops the panel up next to
+the taskbar; clicking elsewhere hides it. (A Linux desktop build exists for development only: the tray
+plugin on Linux offers a menu, not clicks, so the Python app remains the Linux menubar app.) Talks to the
 BI-IC318VNUS directly over Bluetooth LE; no Blue Star account, no Wi-Fi, no cloud.
 
 ## Layout
@@ -15,6 +18,7 @@ lib/
   ui/ac_illustration.dart  CustomPainter airflow animation (speed = fan, colour = mode, sweep = swing)
   ui/widgets.dart          BigTemp (counting + bounce), RoundButton, Chip2, Tile, bottom-sheet picker
   ui/theme.dart            palette shared with the desktop panel
+  desktop/tray_shell.dart  Windows/Linux tray icon + frameless popover window (tray_manager, window_manager)
 ```
 
 The protocol rules (every desired object needs `ts` in epoch ms and `src`, mode and 5-in-1 go as
